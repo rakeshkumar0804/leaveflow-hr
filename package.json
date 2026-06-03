@@ -1,0 +1,19 @@
+{
+  "name": "employee-leave-management-system",
+  "version": "2.0.0",
+  "description": "Full-stack employee leave management system with login, manager approvals, charts, backend API, and SQLite database.",
+  "main": "backend/server.cjs",
+  "scripts": {
+    "start": "node backend/server.cjs",
+    "reset-db": "node backend/server.cjs --reset-db"
+  },
+  "keywords": [
+    "employee",
+    "leave-management",
+    "hr",
+    "sqlite",
+    "node"
+  ],
+  "author": "",
+  "license": "MIT"
+}

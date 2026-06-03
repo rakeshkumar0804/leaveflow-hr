@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LeaveFlow HR</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="login-screen" id="loginScreen">
+      <section class="login-visual">
+        <div class="brand-row">
+          <span class="brand-mark">LF</span>
+          <strong>LeaveFlow HR</strong>
+        </div>
+        <h1>Employee leave management with manager approval.</h1>
+        <p>Track balances, submit requests, approve team leave, and review live leave insights from one workspace.</p>
+        <div class="demo-logins">
+          <button type="button" data-demo="admin">Admin</button>
+          <button type="button" data-demo="manager">Manager</button>
+          <button type="button" data-demo="employee">Employee</button>
+        </div>
+      </section>
+
+      <section class="login-panel">
+        <form id="loginForm">
+          <p class="eyebrow">Secure access</p>
+          <h2>Sign in</h2>
+          <label>
+            Email
+            <input id="loginEmail" type="email" value="manager@leaveflow.test" required />
+          </label>
+          <label>
+            Password
+            <input id="loginPassword" type="password" value="manager123" required />
+          </label>
+          <button class="primary-button" type="submit">Login</button>
+          <p class="message" id="loginMessage"></p>
+        </form>
+      </section>
+    </main>
+
+    <div class="app-shell hidden" id="appShell">
+      <aside class="sidebar">
+        <div class="brand-row">
+          <span class="brand-mark">LF</span>
+          <strong>LeaveFlow HR</strong>
+        </div>
+        <nav>
+          <a class="active" href="#dashboard">Dashboard</a>
+          <a href="#apply">Apply Leave</a>
+          <a href="#approvals">Approvals</a>
+          <a href="#team">Team</a>
+        </nav>
+        <div class="user-card">
+          <span id="userRole">Role</span>
+          <strong id="userName">User</strong>
+          <small id="userEmail">email</small>
+          <button id="logoutButton" type="button">Logout</button>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Live dashboard</p>
+            <h1>Employee Leave Management System</h1>
+          </div>
+          <button class="primary-button" id="refreshButton" type="button">Refresh</button>
+        </header>
+
+        <section class="metrics" id="dashboard">
+          <article><span>Pending</span><strong id="pendingMetric">0</strong><small>Needs review</small></article>
+          <article><span>Approved</span><strong id="approvedMetric">0</strong><small>Confirmed requests</small></article>
+          <article><span>Rejected</span><strong id="rejectedMetric">0</strong><small>Declined requests</small></article>
+          <article><span>This Month</span><strong id="monthMetric">0</strong><small>Approved days</small></article>
+        </section>
+
+        <section class="grid two">
+          <form class="panel" id="leaveForm">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Request</p>
+                <h2>Apply Leave</h2>
+              </div>
+              <span class="pill" id="balancePreview">Balance: --</span>
+            </div>
+            <label id="employeeField">
+              Employee
+              <select id="employeeSelect"></select>
+            </label>
+            <div class="form-grid">
+              <label>
+                Leave Type
+                <select id="leaveType">
+                  <option>Annual</option>
+                  <option>Sick</option>
+                  <option>Casual</option>
+                  <option>Unpaid</option>
+                </select>
+              </label>
+              <label>
+                Days
+                <input id="daysPreview" type="text" readonly />
+              </label>
+              <label>
+                From
+                <input id="startDate" type="date" required />
+              </label>
+              <label>
+                To
+                <input id="endDate" type="date" required />
+              </label>
+            </div>
+            <label>
+              Reason
+              <textarea id="reason" rows="4" placeholder="Write a clear leave reason" required></textarea>
+            </label>
+            <button class="primary-button" type="submit">Submit Request</button>
+            <p class="message" id="formMessage"></p>
+          </form>
+
+          <section class="panel chart-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Insights</p>
+                <h2>Leave Analytics</h2>
+              </div>
+            </div>
+            <div class="chart-grid">
+              <div>
+                <h3>Status Mix</h3>
+                <canvas id="statusChart" width="320" height="220"></canvas>
+              </div>
+              <div>
+                <h3>Approved Days</h3>
+                <canvas id="typeChart" width="320" height="220"></canvas>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section class="panel" id="approvals">
+          <div class="table-toolbar">
+            <div>
+              <p class="eyebrow">Manager approval</p>
+              <h2>Leave Requests</h2>
+            </div>
+            <div class="filters">
+              <button class="filter-button active" type="button" data-filter="All">All</button>
+              <button class="filter-button" type="button" data-filter="Pending">Pending</button>
+              <button class="filter-button" type="button" data-filter="Approved">Approved</button>
+              <button class="filter-button" type="button" data-filter="Rejected">Rejected</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Employee</th>
+                  <th>Leave</th>
+                  <th>Dates</th>
+                  <th>Reason</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="requestsTable"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel" id="team">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Database records</p>
+              <h2>Team Balances</h2>
+            </div>
+          </div>
+          <div class="team-grid" id="teamGrid"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
