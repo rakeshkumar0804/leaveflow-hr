@@ -32,17 +32,17 @@ A full-stack Employee Leave Management System built with **Node.js, Express.js, 
 ### Login Page<img width="1902" height="967" alt="login" src="https://github.com/user-attachments/assets/cba2feab-8244-4ffd-b7d0-04a9c636cdfb" />
 
 
-_Add screenshot here_
+
 
 ### Dashboard<img width="1880" height="961" alt="dashboard " src="https://github.com/user-attachments/assets/f885e0c8-15c4-4c0c-bffd-6a1175989357" />
 
 
-_Add screenshot here_
+
 
 ### Leave Approval<img width="1887" height="957" alt="leave approval " src="https://github.com/user-attachments/assets/42fc920c-96cb-446c-9bd2-866b2087e3cf" />
 
 
-_Add screenshot here_
+
 
 ---
 
