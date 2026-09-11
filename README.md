@@ -44,7 +44,7 @@ Unlike conventional modern web applications laden with bloated JavaScript framew
 
 ### Key Capabilities
 
-- **Employee Self-Service**: Employees track real-time leave balances across Annual, Sick, Casual, and Unpaid categories against an allocated 18-day balance, submit new time-off requests, and monitor chronological approval histories.
+- **Employee Self-Service**: Employees view their current Annual, Sick, Casual, and Unpaid balances, submit time-off requests, and monitor approval history.
 - **Hierarchical Approvals**: Department managers review pending requests exclusively for their direct reports, with automated balance validation and strict enforcement prohibiting self-approval.
 - **Organization Governance**: Administrators supervise company-wide leave schedules, manage leave policies, and audit organizational leave metrics.
 - **Data Minimization & Privacy**: Strict server-side access control guarantees employees cannot enumerate colleagues' profiles, read salary or private metadata, or view unrelated leave histories.
@@ -112,7 +112,7 @@ The database comes pre-seeded with realistic, role-differentiated demonstration 
 ### 2. Defense-in-Depth Security Model
 - **Argon2id Password Hashing**: Passwords hashed with **Argon2id** via the native `argon2` library. Constant-time dummy hash evaluations prevent user enumeration when unregistered email addresses are queried.
 - **Revocable Server-Side Sessions**: 256-bit cryptographically random tokens (`crypto.randomBytes(32)`) delivered via `HttpOnly`, `SameSite=Lax`, `Path=/`, `Max-Age=28800` (8 hours), `Secure` cookies. The database persists exclusively **SHA-256 hashes** of tokens—never plaintext session tokens. No tokens are stored in `localStorage` or `sessionStorage`.
-- **Double-Submit CSRF Defense**: Dynamic anti-CSRF token bound to the server session, delivered on authentication/bootstrap, and validated server-side using constant-time buffer comparison (`crypto.timingSafeEqual`) on all state-changing endpoints (`POST /api/leave-requests`, `POST /api/leave-requests/:id/review`, `POST /api/logout`).
+- **Synchronizer-Token CSRF Defense**: A dynamic anti-CSRF token is generated for each authenticated session, returned during authentication or bootstrap, and validated against the token stored server-side using constant-time comparison (crypto.timingSafeEqual) on all state-changing endpoints (POST /api/leave-requests, POST /api/leave-requests/:id/review, and POST /api/logout).
 - **HMAC-SHA256 Login Rate Limiting**: PostgreSQL-backed rate limiting throttles authentication to 5 attempts per 15-minute window per IP + email identity. Rate-limit identifiers are hashed with **HMAC-SHA256** using `RATE_LIMIT_SECRET` to protect user IP privacy in database tables.
 - **HTTP Security Headers**: Comprehensive headers enforced on all responses:
   - `Content-Security-Policy`: Restricts scripts, styles, and connections strictly to `'self'`.
