@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+
+# Environment configurations & secrets
+.env
+.env.*
+!.env.example
+
+# Runtime & debug logs, crash dumps
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.dmp
+core
+
+# Test & coverage artifacts
+coverage/
+.nyc_output/
+
+# Temporary files & OS caches
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Browser automation profiles & temporary data
+.chrome-user-data/
+.tmp_chrome/
+.tmp_chrome*
+
+# Generated root screenshots (track only curated docs/screenshots/)
+screenshots/
+!docs/screenshots/
+!docs/screenshots/*
+
+# Temporary diagnostic scripts
+scripts/debug/

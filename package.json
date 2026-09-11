@@ -1,19 +1,40 @@
 {
-  "name": "employee-leave-management-system",
+  "name": "leaveflow-hr",
   "version": "2.0.0",
-  "description": "Full-stack employee leave management system with login, manager approvals, charts, backend API, and SQLite database.",
+  "description": "Full-stack HR employee leave management system with role-based access control, PostgreSQL persistence, Argon2id security, server-side sessions, and dark SaaS dashboard.",
   "main": "backend/server.cjs",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "start": "node backend/server.cjs",
+    "test": "node test_production_phase5b.cjs",
+    "test:phase1": "node test_production_phase1.cjs",
+    "test:phase2": "node test_production_phase2.cjs",
+    "test:phase3": "node test_production_phase3.cjs",
+    "test:phase4": "node test_production_phase4.cjs",
+    "test:phase5a": "node test_production_phase5a.cjs",
+    "test:phase5b": "node test_production_phase5b.cjs",
+    "verify": "node test_production_phase5b.cjs",
+    "screenshots:phase5b": "node scripts/capture_phase5b_screenshots.cjs",
     "reset-db": "node backend/server.cjs --reset-db"
   },
   "keywords": [
-    "employee",
     "leave-management",
     "hr",
-    "sqlite",
-    "node"
+    "postgresql",
+    "argon2id",
+    "rbac",
+    "node",
+    "dark-dashboard"
   ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "argon2": "^0.45.1",
+    "pg": "^8.23.0"
+  },
+  "devDependencies": {
+    "pg-mem": "^3.0.14"
+  }
 }
